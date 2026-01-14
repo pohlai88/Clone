@@ -1,0 +1,23 @@
+# Files that can be accessed via @ mentions but shouldn't slow down initial indexing
+# Use this for large generated files or monorepo sub-projects not currently in use
+# These files can still be referenced with @filename in chat, but won't be indexed upfront
+
+# Large generated documentation (if any)
+# docs/generated/
+# api-docs/generated/
+
+# Legacy code (if any)
+# legacy/
+# old-code/
+
+# Other teams' code in monorepos (if any)
+# teams/other-team/
+# packages/legacy-package/
+
+# Large test fixtures (if any)
+# tests/fixtures/large/
+# __tests__/snapshots/
+
+# Example: Uncomment and customize as needed
+# packages/stratonhub/dist/
+# packages/stratonhub/build/

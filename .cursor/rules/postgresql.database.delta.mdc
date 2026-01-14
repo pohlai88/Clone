@@ -1,0 +1,87 @@
+---
+description: "PostgreSQL Database Rules (delta-only): Check docs first, pause for type conversion advice."
+globs: ["packages/db/**/*.{ts,tsx}", "packages/erp-core/**/*.{ts,tsx}"]
+alwaysApply: false
+---
+
+# PostgreSQL Database Rules (Delta Only)
+
+Applies on top of `00-global.always.mdc`. Do NOT restate global rules.
+
+## PostgreSQL Documentation First (DRY + Token Saving)
+
+### Mandatory References
+
+Before implementing ANY database-related code:
+
+1. **Chapter 8: Data Types**
+   - URL: https://www.postgresql.org/docs/current/datatype.html
+   - **USE THIS** for all data type definitions
+   - PostgreSQL types are CANONICAL
+
+2. **Chapter 10: Type Conversion** ⚠️ **CRITICAL**
+   - URL: https://www.postgresql.org/docs/current/typeconv.html
+   - **USE THIS** for all type conversion logic
+   - **PAUSE and ask user** before implementing conversion logic
+
+### Flag System
+
+When you encounter database type conversion work:
+
+```typescript
+/**
+ * ⚠️ FLAG: PostgreSQL Type Conversion
+ * 
+ * TODO: Check PostgreSQL Chapter 10 (Type Conversion) documentation first
+ * Reference: https://www.postgresql.org/docs/current/typeconv.html
+ * 
+ * PAUSE and ask user for advice before implementing:
+ * - Type conversion logic
+ * - Casting rules
+ * - Compatibility checks
+ * 
+ * This follows DRY principle - PostgreSQL docs are the source of truth.
+ */
+```
+
+### When to Pause
+
+**PAUSE and ask user for advice** when you need to:
+- Implement type conversion between PostgreSQL types
+- Handle implicit vs explicit conversions
+- Map between PostgreSQL types and TypeScript/Zod types
+- Implement casting logic
+- Handle type coercion
+- Work with type compatibility rules
+- Implement numeric/decimal conversions
+- Handle timestamp/timezone conversions
+
+### DRY Principle
+
+- **DO NOT** implement type conversion logic without checking PostgreSQL docs
+- **DO NOT** guess PostgreSQL type behavior
+- **DO** reference PostgreSQL documentation first
+- **DO** ask user for advice on complex conversions
+- **DO** use PostgreSQL types as canonical (Chapter 8)
+- **DO** reference PostgreSQL type conversion rules (Chapter 10)
+
+### Token Saving
+
+By checking PostgreSQL docs first and asking for advice:
+- Avoid implementing incorrect logic
+- Save tokens on debugging
+- Follow DRY (PostgreSQL docs are source of truth)
+- Ensure correctness from the start
+
+## PostgreSQL Type Canonical
+
+- PostgreSQL Chapter 8 Data Types is the **SMART level** for business metadata
+- All business data types MUST map to PostgreSQL types
+- External formats (ISO 8601, ISO 4217) are aliasing layers only
+- PostgreSQL handles conversions internally - we map TO PostgreSQL types
+
+## Business Rule
+
+> If you're not using PostgreSQL for accounting, you're not our customer.
+
+This means all business data types MUST map to PostgreSQL types.

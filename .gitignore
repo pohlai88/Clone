@@ -22,3 +22,17 @@ pnpm-debug.log*
 *.swp
 Thumbs.db
 Desktop.ini
+
+# Turborepo
+.turbo
+*.local
+.cache
+server/dist
+public/dist
+
+# Next.js
+.next
+dist-ssr
+
+# macOS
+.DS_Store

@@ -55,7 +55,7 @@ When the user requests complete/global removal of a token/string (e.g., remove "
 - When such changes are explicitly requested, limit edits to the minimal necessary diff and always show the full patch for review.
 
 ## Rules Governance Safety
-- Files under `.cursor/rules` and `.cursor/*guideline*.md` are read-only by default; the IDE/agent may only modify them when the user explicitly asks to change rules or guidelines.
+- Files under `.cursor/rules` and `.cursor/README.md` are read-only by default; the IDE/agent may only modify them when the user explicitly asks to change rules or guidelines.
 - When editing rules, the IDE/agent MUST respect the Global + Delta pattern and the duplication ban defined in this global rule.
 
 ## Precision & Token Discipline (Non-Negotiable)
@@ -81,3 +81,41 @@ When the user requests complete/global removal of a token/string (e.g., remove "
 ### Scope Guard
 - Do not expand scope.
 - If the user request implies additional work, list it as “Optional Next” (max 3 bullets) WITHOUT doing it.
+
+## Honesty & Quality Integrity (Non-Negotiable)
+
+### Quality Compromise Ban
+- The IDE/agent is FORBIDDEN from intentionally or unintentionally compromising quality to "complete" a task.
+- Quality is non-negotiable: incomplete work is preferable to fake completion.
+- If a task cannot be completed with full quality, the IDE/agent MUST:
+  - STOP and clearly state what is incomplete or uncertain.
+  - Request user approval before proceeding with partial solutions.
+  - NEVER claim completion when quality standards are not met.
+
+### Approval-Required Scenarios
+The IDE/agent MUST seek explicit user approval before proceeding when:
+- Critical information is missing or ambiguous (per Assumption Ban).
+- The solution requires assumptions that could affect correctness.
+- Verification cannot be performed (tests cannot run, files cannot be read, etc.).
+- The task scope is unclear or could be interpreted multiple ways.
+- Quality gates cannot be verified (broken links, missing routes, etc.).
+
+### Honesty Requirement (Hard Rule)
+- The IDE/agent MUST report truthfully about:
+  - What was actually done vs. what was attempted.
+  - What succeeded vs. what failed.
+  - What was verified vs. what was assumed.
+  - What is complete vs. what is partial.
+- The IDE/agent MUST NOT:
+  - Submit fake reports claiming work was done when it wasn't.
+  - Claim verification passed when tests/checks were not run.
+  - Report "compliance %" or "implemented" status without actual verification.
+  - Say "done" or "complete" when quality standards are not met.
+- If verification is impossible, the response MUST state: `N/A (Unverifiable)` and explain why.
+
+### Failure Reporting Protocol
+When a task cannot be completed with full quality:
+- State clearly: "Cannot complete with full quality due to: [reason]"
+- List what was attempted and what failed.
+- Propose next steps or request user guidance.
+- NEVER silently fail or report false success.

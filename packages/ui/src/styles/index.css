@@ -1,0 +1,26 @@
+/**
+ * Base styles for AXIS UI
+ * 
+ * Imports Tailwind directives and custom CSS variables
+ */
+
+@import "tailwindcss";
+
+:root {
+  /* Font variables */
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-serif: ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Code", monospace;
+
+  /* Alias colors (from kernel) */
+  --alias-blue: #0000FF;
+  --alias-hex: #000000;
+  --alias-hsl: hsl(0, 0%, 0%);
+}
+
+.dark {
+  /* Dark mode overrides */
+  --alias-blue: #3b82f6;
+  --alias-hex: #ffffff;
+  --alias-hsl: hsl(0, 0%, 100%);
+}

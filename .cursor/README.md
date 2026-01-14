@@ -7,7 +7,7 @@ Source: [Cursor Rules documentation](https://cursor.com/docs/context/rules) – 
 ## 1) Purpose
 
 - Keep Cursor behavior **predictable and consistent** across the monorepo (Next.js, Express, Vite, Remix, Hono, kitchen sink).
-- Follow Cursor’s best practice: **one canonical rule per idea**, everything else is **additive + scoped by `globs`**, no copy‑pasted content.
+- Follow Cursor's best practice: **one canonical rule per idea**, everything else is **additive + scoped by `globs`**, no copy‑pasted content.
 - Make this file the **single reference** for humans and machines when authoring `.cursor/rules/*.mdc`.
 
 ---
@@ -142,5 +142,5 @@ alwaysApply: false
 
 - **Project Rules in `.cursor/rules`**: We store rules as `.mdc`/`.md` files with frontmatter, as described in the [Rules](https://cursor.com/docs/context/rules) docs.
 - **Frontmatter (`description`, `globs`, `alwaysApply`)**: We use these fields exactly as documented to control when rules apply and to keep them focused and scannable.
-- **Scoped, focused rules**: We follow Cursor’s guidance to keep rules under control, avoid copying large style guides, and scope rules to relevant files via `globs` instead of global catch‑alls.
-- **No duplication**: We rely on a single global rule plus delta‑only rules and a duplication detector, matching Cursor’s recommendation to avoid copying large blocks and to reference canonical sources.
+- **Scoped, focused rules**: We follow Cursor's guidance to keep rules under control, avoid copying large style guides, and scope rules to relevant files via `globs` instead of global catch‑alls.
+- **No duplication**: We rely on a single global rule plus delta‑only rules and a duplication detector, matching Cursor's recommendation to avoid copying large blocks and to reference canonical sources.

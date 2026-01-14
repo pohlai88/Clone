@@ -1,11 +1,23 @@
-
 {
-  "name": "nexus-rules-dupcheck",
+  "name": "nexus-canon",
   "private": true,
   "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "check-types": "turbo run check-types",
     "rules:dupcheck": "jscpd --config .jscpd.json --exitCode 1"
   },
   "devDependencies": {
-    "jscpd": "^4.0.7"
+    "jscpd": "^4.0.7",
+    "prettier": "^3.6.0",
+    "turbo": "^2.6.1"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=18"
   }
 }
