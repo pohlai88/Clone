@@ -1,0 +1,29 @@
+---
+description: "StratonHub Registry Rules (delta-only): SSOT, schema discipline, route coverage."
+globs: ["packages/stratonhub/registry/**/*.{ts,tsx}", "packages/stratonhub/scripts/**/*.{ts,tsx}"]
+alwaysApply: false
+---
+
+# StratonHub Registry Rules (Delta Only)
+Applies on top of `00-global.always.mdc`. Do NOT restate global rules.
+
+## SSOT Contract
+- Registry drives navigation, search, routes, and coverage.
+- If it’s not in the registry, it doesn’t exist.
+
+## Required Fields (Minimum)
+- id, title, description, route
+- surface, type, status
+- tags, owner, updatedAt
+
+## Hard Constraints
+- id must be kebab-case and unique
+- route must be unique
+- route must match surface prefix:
+  - /developers/*
+  - /business/*
+  - /users/*
+
+## Change Rule
+When changing registry:
+- update registry entry + page route + metadata in the same PR.

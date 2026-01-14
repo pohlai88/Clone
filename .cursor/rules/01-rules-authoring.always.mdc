@@ -1,0 +1,39 @@
+---
+description: "Rules Authoring Law: prevent duplicated rules and rule sprawl. Enforce Global + Delta pattern."
+alwaysApply: true
+---
+
+# Cursor Rules Authoring Law (Always Apply)
+
+## Purpose
+Prevent spaghetti rules, duplication, contradictions, and bloat.
+
+## Required Architecture
+- Exactly ONE global shared rule file:
+  - `.cursor/rules/00-global.always.mdc`
+- All other rules MUST be delta-only and scoped by globs.
+
+## Delta-Only Rule Standard
+Every non-global rule MUST start with:
+> Applies on top of `00-global.always.mdc`. Do NOT restate global rules.
+
+## Naming Convention (Mandatory)
+`{domain}.{topic}.delta.mdc`
+
+Examples:
+- `stratonhub.docs.delta.mdc`
+- `stratonhub.registry.delta.mdc`
+
+## Duplication Ban (Hard Rule)
+- Never copy/paste rule text across rule files.
+- Shared text belongs ONLY in `00-global.always.mdc`.
+
+## No Bypass Rule
+If you later introduce `AGENTS.md` (anywhere under `.cursor/` or the repo),
+it MUST follow the same Global + Delta structure:
+- shared rules belong ONLY in `00-global.always.mdc`
+- scoped guidance belongs in delta-only rule files
+
+## Enforcement
+Duplication is enforced by CI via `jscpd` on `.cursor/rules/**/*.{mdc,md}`.
+Any duplication must be removed by merging shared content into `00-global.always.mdc`.

@@ -1,0 +1,11 @@
+
+{
+  "name": "nexus-rules-dupcheck",
+  "private": true,
+  "scripts": {
+    "rules:dupcheck": "jscpd --config .jscpd.json --exitCode 1"
+  },
+  "devDependencies": {
+    "jscpd": "^4.0.7"
+  }
+}

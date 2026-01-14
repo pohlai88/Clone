@@ -1,0 +1,25 @@
+---
+description: "StratonHub Docs Rules (delta-only): Diataxis structure, readability, anti-bloat."
+globs: ["packages/stratonhub/**/*.{md,mdx}"]
+alwaysApply: false
+---
+
+# StratonHub Docs Rules (Delta Only)
+Applies on top of `00-global.always.mdc`. Do NOT restate global rules.
+
+## Diataxis Enforcement
+- Each page must be exactly ONE type:
+  - tutorial | how-to | reference | explanation
+- Never mix types in one page. Link to other pages instead.
+
+## Mandatory Page Header (First Screen)
+Every page must start with:
+1) Purpose (1 sentence)
+2) Audience (developers | business | users)
+3) When to use this page
+4) Prerequisites (if any)
+
+## Anti-Bloat
+- No duplicated SOP steps across pages.
+- No duplicated reference tables across pages.
+- If content repeats: extract to a canonical page or MDX component.

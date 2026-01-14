@@ -1,0 +1,8 @@
+{
+    "threshold": 0,
+    "minLines": 8,
+    "minTokens": 120,
+    "reporters": ["console"],
+    "ignore": ["**/node_modules/**", "**/.git/**"],
+    "pattern": ["**/.cursor/rules/**/*.md", "**/.cursor/rules/**/*.mdc"]
+  }

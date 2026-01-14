@@ -1,0 +1,65 @@
+---
+description: "stratonHub UI (delta-only): Diataxis-aware layouts + 3-surface navigation UI rules."
+globs:
+  - "packages/stratonhub/app/**/*.{ts,tsx}"
+  - "packages/stratonhub/components/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# stratonHub UI — Diataxis (Delta Only)
+Applies on top of `00-global.always.mdc`. Do NOT restate global rules.
+
+## UI Contract (Diataxis-first)
+The UI must render documentation in exactly 4 modes:
+- tutorial | how-to | reference | explanation
+
+Each mode has a distinct layout + components. Do not mix modes.
+
+## Required UI Components
+- Surface Switcher: developers | business | users (always visible on desktop)
+- Content Type Badge: tutorial/how-to/reference/explanation (always visible in header area)
+- Breadcrumbs: must include surface + content type context
+- TOC: required for reference + explanation; optional for tutorial/how-to
+
+## Layout Rules by Diataxis Type
+### Tutorial
+- Must support step progression (next/prev)
+- Optional progress indicator if steps exist
+- Primary CTA: "Continue" / "Next step"
+- Show prerequisites at top
+
+### How-To
+- Must be task-first (goal at top)
+- Must display prerequisites + numbered steps
+- Must include troubleshooting section slot
+- Primary CTA: "Do the task"
+
+### Reference
+- Must optimize for lookup:
+  - compact spacing, dense tables
+  - copy-to-clipboard for code/commands
+  - anchors for every section
+- Prefer index/collapsible sections for long pages
+
+### Explanation
+- Must optimize for reading:
+  - wider line-height and generous spacing
+  - diagram slot supported
+  - “related concepts” section slot
+
+## Search UI (Cmd+K)
+- Must support filters:
+  - surface (dev/business/user)
+  - type (tutorial/how-to/reference/explanation)
+  - status (sealed/reviewed/draft)
+- Ranking rule: sealed > reviewed > draft
+
+## Accessibility (KISS)
+- AA baseline always.
+- Optional "Reading Accessibility Mode" toggle may adjust:
+  - font size, line-height, contrast, focus ring visibility
+- Do NOT promise AAA across every widget.
+
+## Anti-Leak Discipline
+- This rule applies ONLY to stratonHub UI files (app/components).
+- Do not add globs outside `packages/stratonhub/`.

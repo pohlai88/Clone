@@ -1,0 +1,83 @@
+---
+description: "Global Constitution: DRY/KISS, boundaries, governance. Single source of truth for shared rules."
+alwaysApply: true
+---
+
+# Global Constitution (Always Apply)
+
+## Prime Directives (Non-Negotiable)
+- DRY + KISS.
+- Do the minimum change that solves the problem.
+- Prefer canonical sources over copy/paste.
+- If a rule is needed in 2+ places, it MUST live here.
+
+## Repo Discipline
+- Keep shared logic in packages. Apps are composition layers.
+- Avoid framework leakage into shared/core packages.
+
+## stratonHub Doctrine
+- stratonHub is a documentation operating system, not a wiki.
+- Diataxis-as-First is mandatory:
+  - tutorial | how-to | reference | explanation
+- Registry is SSOT:
+  - If it’s not in the registry, it doesn’t exist.
+
+## Quality Gates
+- No broken links.
+- No missing routes.
+- No orphan registry entries.
+- No duplicated Cursor rules.
+
+## Global Eradication Protocol (Non-Negotiable)
+When the user requests complete/global removal of a token/string (e.g., remove "XXX"):
+- Inventory FIRST: repo-wide search and report total match count.
+- Apply the changes.
+- Verify LAST: same repo-wide search must return 0 matches (or explicitly approved exceptions).
+- Hard-fail: if any matches remain, list remaining file paths and line numbers and do NOT claim completion.
+
+## Test & Verification Discipline
+- For any change that affects behavior beyond a single trivial edit, the IDE/agent MUST either:
+  - run the relevant tests/lints/format checks for the impacted app/package, or
+  - clearly state which commands the user should run (e.g., `pnpm test --filter <target>`, `pnpm lint`).
+
+## Large Change & Refactor Guard
+- Multi-file or cross-package changes require a short plan plus user confirmation before edits.
+- Large changes MUST be delivered as small, reviewable batches rather than a single massive diff.
+
+## Framework & Docs Preference
+- When working in a specific framework (Next.js, Express, Vite, Remix, Hono, etc.), prefer:
+  - existing patterns in this repo, and
+  - the official framework documentation
+  over inventing new patterns or guessing behavior.
+
+## Config, Infra & Secrets Safety
+- The IDE/agent MUST NOT modify secrets, production configuration, or deployment/infra files (CI/CD, Kubernetes, Terraform, etc.) unless explicitly requested by the user.
+- When such changes are explicitly requested, limit edits to the minimal necessary diff and always show the full patch for review.
+
+## Rules Governance Safety
+- Files under `.cursor/rules` and `.cursor/*guideline*.md` are read-only by default; the IDE/agent may only modify them when the user explicitly asks to change rules or guidelines.
+- When editing rules, the IDE/agent MUST respect the Global + Delta pattern and the duplication ban defined in this global rule.
+
+## Precision & Token Discipline (Non-Negotiable)
+
+### Output Format (Default)
+- The IDE/agent MUST output ONLY:
+  1) The minimal **diff / patch** (what changed)
+  2) **Compliance % (Implemented)** (0–100) based on the real repo state after the diff; if unverifiable: `N/A (Unverifiable)`
+
+  3) A **short reasons list** (max 5 bullets, <= 1 line each)
+- The IDE/agent MUST NOT output full reports, long explanations, or verbose summaries unless explicitly requested.
+
+### Assumption Ban
+- The IDE/agent is forbidden to proceed based on assumptions.
+- If any critical detail is missing, ambiguous, or could change the correct output:
+  - STOP and ask 1–3 clarifying questions (only what is strictly required).
+- The IDE/agent MUST NOT say “I assume…” or silently assume defaults.
+
+### Clarify-Then-Act Protocol
+- If clarification is required, do not propose solutions yet.
+- After the user answers, return the diff + compliance % only.
+
+### Scope Guard
+- Do not expand scope.
+- If the user request implies additional work, list it as “Optional Next” (max 3 bullets) WITHOUT doing it.
