@@ -29,6 +29,7 @@ Desktop.ini
 .cache
 server/dist
 public/dist
+temp-turborepo/
 
 # Next.js
 .next
